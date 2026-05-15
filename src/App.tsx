@@ -92,30 +92,34 @@ export const App: React.FC = () => {
     setTempTodo(newTempTodo);
     setIsInputDisabled(true);
 
-    createTodo({ userId: USER_ID, title: trimmedTitle, completed: false })
-      .then(createdTodo => {
-        setTodos(prev => [...prev, createdTodo]);
-        setTitle('');
-      })
-      .catch(() => showError('Unable to add a todo'))
-      .finally(() => {
-        setTempTodo(null);
-        setIsInputDisabled(false);
-      });
+    setTimeout(() => {
+      createTodo({ userId: USER_ID, title: trimmedTitle, completed: false })
+        .then(createdTodo => {
+          setTodos(prev => [...prev, createdTodo]);
+          setTitle('');
+        })
+        .catch(() => showError('Unable to add a todo'))
+        .finally(() => {
+          setTempTodo(null);
+          setIsInputDisabled(false);
+        });
+    }, 0);
   };
 
   const handleDelete = (id: number) => {
     setLoadingIds(prev => [...prev, id]);
 
-    deleteTodo(id)
-      .then(() => {
-        setTodos(prev => prev.filter(todo => todo.id !== id));
-      })
-      .catch(() => showError('Unable to delete a todo'))
-      .finally(() => {
-        setLoadingIds(prev => prev.filter(lid => lid !== id));
-        inputRef.current?.focus();
-      });
+    setTimeout(() => {
+      deleteTodo(id)
+        .then(() => {
+          setTodos(prev => prev.filter(todo => todo.id !== id));
+        })
+        .catch(() => showError('Unable to delete a todo'))
+        .finally(() => {
+          setLoadingIds(prev => prev.filter(lid => lid !== id));
+          inputRef.current?.focus();
+        });
+    }, 0);
   };
 
   const handleClearCompleted = () => {
