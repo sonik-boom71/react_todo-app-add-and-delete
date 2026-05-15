@@ -9,17 +9,7 @@ import { ErrorNotification } from './components/ErrorNotification';
 
 export type FilterType = 'all' | 'active' | 'completed';
 
-function getUserId(): number {
-  try {
-    const stored = localStorage.getItem('user');
-
-    return stored ? JSON.parse(stored).id : 0;
-  } catch {
-    return 0;
-  }
-}
-
-const USER_ID = getUserId();
+const USER_ID = 4201;
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
