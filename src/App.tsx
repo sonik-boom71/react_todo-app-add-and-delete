@@ -112,6 +112,14 @@ export const App: React.FC = () => {
     }, 0);
   };
 
+  const handleToggle = (id: number) => {
+    setTodos(prev =>
+      prev.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
+    );
+  };
+
   const handleClearCompleted = () => {
     const completedIds = todos
       .filter(todo => todo.completed)
@@ -170,6 +178,7 @@ export const App: React.FC = () => {
               tempTodo={tempTodo}
               loadingIds={loadingIds}
               onDelete={handleDelete}
+              onToggle={handleToggle}
             />
 
             <Footer
