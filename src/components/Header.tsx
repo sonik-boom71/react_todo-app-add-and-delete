@@ -26,6 +26,8 @@ export const Header: React.FC<Props> = ({
         value={title}
         onChange={e => onTitleChange(e.target.value)}
         disabled={isInputDisabled}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
       />
     </form>
   </header>
